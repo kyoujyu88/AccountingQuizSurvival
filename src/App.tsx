@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { BossChat } from './components/BossChat';
 import { SenpaiDM } from './components/SenpaiDM';
 import { questions } from './data/questions';

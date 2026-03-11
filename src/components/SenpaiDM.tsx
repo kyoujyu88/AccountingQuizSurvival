@@ -1,6 +1,5 @@
-import React from 'react';
 import { Smile } from 'lucide-react';
-import { Question } from '../data/questions';
+import type { Question } from '../data/questions';
 
 interface SenpaiDMProps {
   question: Question;

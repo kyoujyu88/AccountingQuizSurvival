@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Briefcase } from 'lucide-react';
-import { Question } from '../data/questions';
+import type { Question } from '../data/questions';
 
 interface BossChatProps {
   question: Question;
