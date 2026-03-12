@@ -6,7 +6,10 @@ import { questions } from './data/questions';
 type Screen = 'boss' | 'senpai';
 
 function App() {
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [shuffledQuestions, setShuffledQuestions] = useState(() => {
+    return [...questions].sort(() => Math.random() - 0.5);
+  });
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [currentScreen, setCurrentScreen] = useState<Screen>('boss');
 
   const handleBossComplete = () => {
@@ -14,17 +17,18 @@ function App() {
   };
 
   const handleSenpaiNext = () => {
-    if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex((prev) => prev + 1);
+    if (currentIndex < shuffledQuestions.length - 1) {
+      setCurrentIndex((prev) => prev + 1);
       setCurrentScreen('boss');
     } else {
-      // プロトタイプのため、最後の問題が終わったら最初に戻る
-      setCurrentQuestionIndex(0);
+      // プロトタイプのため、最後の問題が終わったら再シャッフルして最初に戻る
+      setShuffledQuestions([...questions].sort(() => Math.random() - 0.5));
+      setCurrentIndex(0);
       setCurrentScreen('boss');
     }
   };
 
-  const currentQuestion = questions[currentQuestionIndex];
+  const currentQuestion = shuffledQuestions[currentIndex];
 
   return (
     <div className="min-h-screen bg-slate-900 flex justify-center items-center">

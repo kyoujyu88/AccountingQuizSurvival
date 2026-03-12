@@ -7,7 +7,11 @@ interface SenpaiDMProps {
 }
 
 export const SenpaiDM: React.FC<SenpaiDMProps> = ({ question, onNext }) => {
-  const shareText = encodeURIComponent("上司の140万円のムチャぶりを随契で乗り切りました！ #公務員会計サバイバル");
+  const truncatedBossMessage = question.bossMessage.length > 40 
+    ? question.bossMessage.substring(0, 40) + '...'
+    : question.bossMessage;
+    
+  const shareText = encodeURIComponent(`「${truncatedBossMessage}」\nという上司のムチャぶりを乗り切りました！\n#公務員会計サバイバル`);
   const shareUrl = `https://twitter.com/intent/tweet?text=${shareText}`;
 
   return (
